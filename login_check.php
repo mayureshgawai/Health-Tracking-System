@@ -26,6 +26,8 @@
 
             $check = $db->doctor_register->findOne($log);
 
+
+            //setcookie('name', $check['first_name'], time()+90);
             $_SESSION['name'] =  $check['first_name'];
             $_SESSION['mname'] =  $check['middle_name'];
             $_SESSION['lname'] =  $check['last_name'];
@@ -51,6 +53,7 @@
         else if($log['role_check'] == 'Patient'){
             $check = $db->patient_register->findOne($log);
 
+            //setcookie('name', $check['first_name'], time()+90);   //session will expire in 90 seconds from now on.
             $_SESSION['name'] =  $check['first_name'];
             $_SESSION['mname'] =  $check['middle_name'];
             $_SESSION['lname'] =  $check['last_name'];
@@ -73,6 +76,10 @@
             else{
                 header("Location:user_profile.php");
             }
+        }
+        else if($log['role_check'] == 'Select Role'){
+            echo "<script>alert('Please select your role first...')</script>";   
+            echo "<script>location.href='login.php'</script>";
         }
         
         

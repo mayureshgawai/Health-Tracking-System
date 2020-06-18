@@ -2,8 +2,7 @@
     <head>   
        <link rel="stylesheet" href="header_links.html">
     </head>
-    <?php session_start();?>
-
+<?php session_start();?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -201,8 +200,15 @@ tr:hover {
 
 
 
-            </style>
         
+        
+            </style>
+         
+
+
+
+
+
 
 
     <style>
@@ -217,10 +223,7 @@ tr:hover {
     <body style="background-color:ghostwhite;font-size:15px">
         
         <div>
-            <?php
-            include "user_header.html";
-            
-            ?>
+            <?php include "header.html";?>
 
             
 
@@ -272,68 +275,112 @@ tr:hover {
             </div>
         </center>
 
-        <a href="#" style="color: blue;font-size: 20px;text-align: center;position: relative;left: 500px;top:-710px"><b>Previous Prescriptions </b></a>
+        
 
-<a href="#" style="color: blue;font-size: 20px;text-align: center;position: relative;left: 650px;top:-710px"><b>View Old Reports</b></a>
+
 
 <div class="panel panel-primary" style="width: 70%;height: 600px;position: absolute;left: 300px;top: 200px;">
     <div class="panel-heading">Letter head content</div>
     <div class="panel-body" style = "font-family: 'DM Serif Text', serif;font-size:20px">
-        <img src="Rx_symbol.png" style="width: 50px;height: 50px;">
+        
+<form action="doc_pre_backend.php" method="POST">
+        <div class="input-group" style="width: 30%;position: absolute;top: 72px;left:110px">
+            <span class="input-group-addon" style = "width:18%;font-size:12px"><b>Doctor's name </b></span>
 
-        <table>
-          <tr>
-            <td>Disease:</td>
-            <td><input type="text" name="disease" class="form-control" ></td>
-          </tr>
+          <input id="msg" type="text" class="form-control" name="doctor_name" placeholder="Name" value="<?php echo $_SESSION['name'],' ',$_SESSION['lname'];?>" readonly>
+          </div>
 
-        </table>
+          <div class="input-group" style="width: 30%;position: absolute;top: 72px;left:500px">
+            <span class="input-group-addon" style = "width:20%;font-size:12px"><b>Hospital </b></span>
+
+          <input id="msg" type="text" class="form-control" name="hospital" placeholder="Name">
+          </div>
 
 
+
+
+
+        <div class="input-group" style="width: 45%;position: absolute;top: 130px;">
+            <span class="input-group-addon" style = "width:20%;font-size:12px"><b>Patient's Name </b></span>
+
+          <input id="msg" type="text" class="form-control" name="patient_name" placeholder="Name">
+          </div>
+
+
+        <div class="input-group" style="width: 45%;position: absolute;top: 175px;">
+            <span class="input-group-addon" style = "width:20%;font-size:12px"> <b> Disease </b> </span>
+            <input id="msg" type="text" class="form-control" name="disease" placeholder="Enter Disease">
+          </div>
+          <div class="input-group" style="width: 45%;position: absolute;top: 220px;">
+            <span class="input-group-addon" style = "width:20%;font-size:12px"><b>Remark </b></span>
+
+          <input id="msg" type="text" class="form-control" name="remark" placeholder="Remarks">
+          </div>
+
+          <div class="input-group" style="width: 45%;position: absolute;top: 270px;">
+            <span class="input-group-addon" style = "width:20%;font-size:12px"><b>Contact no </b></span>
+
+          <input id="msg" type="text" class="form-control" name="contact" placeholder="Contact">
+          </div>
+  
+          <div class="input-group" style="width: 45%;position: absolute;top: 120px;left: 500px;">
+            <span class="input-group-addon" style = "width:22%;font-size:12px"><b>Blood pressure </b></span>
+
+          <input id="msg" type="text" class="form-control" name="blood_pressure" placeholder="Blood press">
+          </div>
+          
+          <div class="input-group" style="width: 45%;position: absolute;top: 154px;left: 500px;">
+            <span class="input-group-addon" style = "width:22%;font-size:12px"><b>Fever </b></span>
+
+          <input id="msg" type="text" class="form-control" name="fever" placeholder="Fever">
+          </div>
+          
+          <div class="input-group" style="width: 45%;position: absolute;top: 188px;left: 500px;">
+            <span class="input-group-addon" style = "width:22%;font-size:12px"><b>Sugar </b></span>
+
+          <input id="msg" type="text" class="form-control" name="sugar" placeholder="Sugar">
+
+          </div>
           
           <div>
 
-            <table style="position: relative;left: 300px;top:150px;color: white;">
+          <table style="position: relative;left: 0px;top:270px;color: white;">
     
-                <tr>
-                  <th>Sr.no.</th>
-                  <th>Medicine</th>
-                  <th>Dose</th>
-                  <th>When</th>
-                  <th>Additional</th>
-            
-                </tr>
-                <tr>
-                          
-                </tr>  
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td> <input type="checkbox" value="M">M
-                    <input type="checkbox" value="A">A
-                    <input type="checkbox" value="N">N     
-                
-                  
-                </td>
-                  <td>
-                    
+    <tr>
+      <th>Sr.no.</th>
+      <th>Medicine</th>
+      <th>Dose</th>
+      <th>When</th>
+      <th>Additional</th>
 
-                        <input type="checkbox" value="before"> before
+    </tr>
+    <tr>
+              
+    </tr>  
+    <tr>
+      <td><input type="text" name="srno" style="color:black;"></td>
+      <td><textarea type="text" name="medicines" style="color:black;"></textarea></td>
+      <td>  <input type="checkbox" name="dose" value="M">M
+        <input type="checkbox" name="dose" value="A">A
+        <input type="checkbox" name="dose" value="N">N     
+    
+  
+    </td>
+      <td>
 
-                        <input type="checkbox" value="after"> after
+            <input type="checkbox" name="when" value="before"> before
 
-
-                    
+            <input type="checkbox" name="when" value="after"> after
 
 
-                  </td>
-                  <td></td>
-                  
-                </tr>
-                
-              </table>
 
-              <button type="button" class="btn btn-primary" style="position: relative;left: 750px;top: 180px;width: 165px;border-radius: 15px;font-size:13px">Add New</button>
+      </td>
+      <td></td>
+      
+    </tr>
+    
+  </table>
+                <button type="submit" class="btn btn-primary" style="position: relative;left: 850px;top: 240px;width: 165px;border-radius: 15px;font-size:13px">Add New</button>
             
 
 
@@ -348,9 +395,9 @@ tr:hover {
     <div class="input-group" style="width: 45%;position: absolute;top: 520px;left: 15px;">
         <span class="input-group-addon" style="width: 120px;font-family: 'DM Serif Text', serif;font-size:12px"> <b> Next Visit </b> </span>
 
-      <input id="msg" type="date" class="form-control" name="msg" >
+        <input id="msg" type="date" class="form-control" name="nxt_date" >
     </div>    
-
+      </form>
 
     
   </div>
@@ -358,12 +405,12 @@ tr:hover {
 
 
 
-<div class="container-fluid" style="position: relative;top: -770px;left:20px">
+<div class="container-fluid" style="position: relative;top: -670px;left:20px">
   <div class="row-fluid">
-    <div class="span2" style="width: 16%;height: 340px;background-color:white;border-radius: 5px; box-shadow:10px 10px 50px blue;">
+    <div class="span2" style="width: 14%;height: 240px;background-color:white;border-radius: 5px; box-shadow:10px 10px 50px blue;">
       <!--Sidebar content-->
 
-      <h3 style="margin-top:5px;margin-left:10px;">Welcome Doctor</h3>
+      
       <br>
       <br>
 
@@ -375,13 +422,11 @@ tr:hover {
       <span style="position: relative;top: 10px;margin-left:-50px;"><b>Contact:</b> <?php echo $_SESSION['contact']?></span>
       
       </div>
-
-        
     </div>
 </div>
 
 </div>
- 
+        
         <div>
             <?php include "footer.html";?>
         </div>

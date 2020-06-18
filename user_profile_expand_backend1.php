@@ -32,8 +32,14 @@ if($_POST['save_changes']){
         }
     }
 
-    $db->patient_register->updateOne(['first_name'=> $_SESSION['name']], ['$set' => $insert1]);
+    
 
+if($_SESSION['role_check'] == 'Patient'){
+    $db->patient_register->updateOne(['first_name'=> $_SESSION['name']], ['$set' => $insert1]);
+}
+else{
+    $db->doctor_register->updateOne(['first_name'=> $_SESSION['name']], ['$set' => $insert1]);
+}
     $_SESSION['name'] =  $_POST['first_name_profile'];
     $_SESSION['mname'] =  $_POST['middle_name_profile'];
     $_SESSION['lname'] =  $_POST['last_name_profile'];
@@ -42,9 +48,15 @@ if($_POST['save_changes']){
     $_SESSION['bldgrp'] =  $_POST['blood_group'];
     
 
+
+    if($_SESSION['role_check'] == 'Patient'){
     echo "<script> alert('Records Updated Successfully');</script>";
     header("Location:user_profile.php");
-    
+    }
+    else{
+        echo "<script> alert('Records Updated Successfully');</script>";
+        header("Location:doc_profile.php");
+    }
 
 }
 

@@ -4,20 +4,35 @@
         <link rel="stylesheet" href="header_links.html">
         
     </head>
+    <script>
+    function validate(){
+    var email = document.getElementById("email").value;
+    var pass = document.getElementById("password1").value;
+    var mail_valid = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    var password_valid = /^([a-z A-Z 0-9]{4,15})$/ ;
+
+    if(mail_valid.test(email) == false){
+        //alert("Invalid Email you have entered !");
+        document.getElementById("email_warn").innerHTML= "Invalid Email format";
+        document.getElementById("email_warn").style.visibility="visible";
+        return false;
+    }
+    if(password_valid.test(pass) == false){
+        document.getElementById("password_warn").innerHTML= "Invalid Password format";
+        document.getElementById("password_warn").style.visibility="visible";
+        return false;
+    }
+    }
+    </script>
+
+
+
+
     <body style="background-color:ghostwhite">
 
         <div>
 
             <?php 
-            require_once 'vendor/autoload.php';
-
-            $connection = new MongoDB\Client;
-            $db = $connection->minidb;
-            $collection = $db->patient_registration;
-            $collection2 = $db->doctcollection;
-            $upload_dir = "../upload/";
-            
-            
             include "header.html";?>
         </div>
 
@@ -42,16 +57,16 @@
                     
                     <font style="font-size:150%; font-color:lightblue;">or</font><br><br>
                     
-                    <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name" required><br>
-                    <input type="text" class="form-control" name="mname" id="mname" placeholder="Middle Name" required><br>
-                    <input type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" required><br>
+                    <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name" ><br>
+                    <input type="text" class="form-control" name="mname" id="mname" placeholder="Middle Name" ><br>
+                    <input type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" ><br>
                     <div class="form-group">
                     <select class="form-control" id="sel1" name="sel1">
                         <option>Select Role</option>
                         <option>Doctor</option>
                         <option>Patient</option>
                     </select><br>
-                    <input type="text" class="form-control" name="bldgrp" id="bldgrp" placeholder="Blood Group" required>
+                    <input type="text" class="form-control" name="bldgrp" id="bldgrp" placeholder="Blood Group" >
                     <table>                    
                         <tr>
                             <td>
@@ -70,19 +85,21 @@
 </td>
 </tr>
 </table> 
-                    Date of Birth<input type="date" class="form-control" name="dob" id="dob" placeholder="Date of Birth" required><br>            
-                    <input type="number" class="form-control" name="age" id="age" placeholder="Age" required>
-                    <br><input type="text" class="form-control" name="contact" id="contact" placeholder="Contact No." required><br>
-                    <input type="text" class="form-control" name="email" id="email" placeholder="Email" required><br>
+                    Date of Birth<input type="date" class="form-control" name="dob" id="dob" placeholder="Date of Birth" ><br>            
+                    <input type="number" class="form-control" name="age" id="age" placeholder="Age" >
+                    <br><input type="text" class="form-control" name="contact" id="contact" placeholder="Contact No." ><br>
+                    <input type="text" class="form-control" name="email" id="email" placeholder="Email" ><br>
+                    <label name="email_warn" id="email_warn" style="color: red;visibility:hidden;">Invalid Email format you entered !</label>
         
         
-                    <textarea type="text" class="form-control" name="address" id="address" placeholder="Address" required></textarea><br>
+                    <textarea type="text" class="form-control" name="address" id="address" placeholder="Address" ></textarea><br>
                     
-                    <input type="text" class="form-control" name="username" id="username" placeholder="username" required><br>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="password" required><br>
-                    <input type="password" class="form-control" name="password1" id="password1" placeholder="Confirm Password" required><br>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="username" ><br>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="password" ><br>
+                    <input type="password" class="form-control" name="password1" id="password1" placeholder="Confirm Password" ><br>
+                    <label name="password_warn" id="password_warn" style="color:red; visibility:hidden;">Invalid password format</label><br>
                     Adhar Card: <input type="file" name="adh" id="adh" placeholder="adh"><br><br>
-                    <button type="submit" value="Login" class="btn btn-primary" name="admin_login">Sign Up</button>
+                    <button type="submit" value="Login" class="btn btn-primary" name="admin_login" onClick="validate()">Sign Up</button>
                     <br><br>
 
                     Have an account &nbsp&nbsp <a href="login.php">Log In</a>
@@ -94,61 +111,6 @@
             <?php include "footer.html";?>
         </div>
         
-        <?php
-        
-        require 'vendor/autoload.php';
-
-//        session_start();
-        $connection = new MongoDB\Client;
-        $db = $connection->project;
-        $collection = $db->doctor_register;
-        $collection2 = $db->patient_register;
-        $upload_dir = "../upload/";
-
-        if($_POST['admin_login']){
-            
-            
-            error_reporting(E_ERROR);
-
-            $insert = array(
-                'first_name' => $_POST['fname'],
-                'middle_name' => $_POST['mname'],
-                'last_name' => $_POST['lname'],
-                'role_check' => $_POST['sel1'],
-                'gender' => $_POST['gender'],
-                'blood_group'=>$_POST['bldgrp'],
-                'date' => $_POST['dob'],
-                'age' => $_POST['age'],
-                'contact' => $_POST['contact'],
-                'email' => $_POST['email'],
-                'address' => $_POST['address'],
-                'username' => $_POST['username'],
-                'password' => $_POST['password'],
-                
-            );
-
-
-            if($_FILES['adh']) {
-                header("Location:index.php");
-                if(move_uploaded_file($_FILES['adh']['tmp_name'], $upload_dir .$_FILES['adh']['name'])) {
-                    $insert['adhar'] = $_FILES['adh']['name'];       
-                }
-                else {
-                    echo "Failed to upload adhar file.";
-                }
-            }
-
-     
-            if($insert['role_check'] == 'Doctor'){
-                $collection->insertOne($insert);
-            }
-            else{
-                $collection2->insertOne($insert);
-            }
-        }
-
-        ?>
-
 
 
     </body>

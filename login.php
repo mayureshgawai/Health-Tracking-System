@@ -6,7 +6,7 @@
     <body style="background-color:ghostwhite">
 
         <div>
-            <?php include "header.html";?>
+            <?php include "login_header.html";?>
         </div>
         
         <center>

@@ -38,16 +38,6 @@
                 </div>
 
                 <br>
-                
-                <div style="background-color:white; border: 2px solid lightgrey; border-radius: 8px;">
-                <br><font style="font-weight:bold; font-size:150%; color:rgb(94, 82, 255); font-family:initial;">Highlights</font><br><br>
-                <p style="text-align:left; font-size:110%; color:rgb(94, 123, 255); font-family:initial;">
-                &nbsp&nbspNone
-                </p>
-                </div>
-                
-                <br>
-
                 <div style="background-color:white; border: 2px solid lightgrey; border-radius: 8px;">
                 <br><font style="font-weight:bold; font-size:150%; color:rgb(94, 82, 255); font-family:initial;">Ongoing Treatments</font><br><br>
                 <p style="text-align:left; font-size:110%; color:rgb(94, 123, 255); font-family:initial;">
@@ -69,39 +59,21 @@
                         <td>
                             <center><br>
                             <a href="">
-                            <img src="prescription.png" width="35%" height="60%"></img><br><br>
-                             Presctiptions</img></a></center></a>
+                            <img src="prescription.png" width="60%" height="60%"></img><br><br>
+                             <a href="show_prescriptions.php">Presctiptions</a></img></a></center></a>
                         </td>
 
-                        <td>
-                            <center>
-                            <a href="">
-                            <img src="reports.png" width="60%" height="50%"></img><br>
-                             Reports</a></center>
-                        </td>
+                        
 
                         <td>
                         <center>
-                            <a href="doctor_traverse.php">
+                            <a href="doctor_list.php">
                             <img src="doctor.jpg" width="40%" height="30%"></img><br><br>
                             Preferred Doctors</a>  <br></center>
                         </td>
                     </tr>
 
-                    <tr>
-                        <td>
-                        <center>
-                            <a href="">
-                            <img src="hospital.jpg" width="35%" height="30%"></img><br> 
-                             Frequent Hospitals</a><center>
-                        </td>
-
-                        <td>
-                        <center><br><br>
-                            <a href="">
-                            <img src="blood_bank.png" width="50%" height="50%"></img><br><br><br><br>
-                             Blood Banks</a><center>
-                        </td>
+                   
                     </tr>
                     
                 </table>

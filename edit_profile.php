@@ -51,7 +51,7 @@
                 <div class="tab-content">
                     <div style="width:100%;" id="menu1" class="container tab-pane active">
                         <br>
-                        <form class="form-group"  action="user_profile_expand_backend.php" method="POST">
+                        <form class="form-group"  action="user_profile_expand_backend1.php" method="POST">
                             <div class="form-row">
                                 <div class="col">
                                     <label>Name:</label>
@@ -209,7 +209,7 @@
                                 
                             </div>
                             
-                            <button type="submit" value="submit" class="btn btn-primary" name="save_changes" action="user_profile_expand_backend.php">Save Changes</button>
+                            <button type="submit" value="submit" class="btn btn-primary" name="save_changes" >Save Changes</button>
                         
                         </form>
                         
